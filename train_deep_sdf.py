@@ -296,6 +296,7 @@ def main_function(experiment_directory, continue_from, batch_split):
         save_latent_vectors(experiment_directory, str(epoch) + ".pth", lat_vecs, epoch)
 
     def signal_handler(sig, frame):
+
         logging.info("Stopping early...")
         sys.exit(0)
 
@@ -305,6 +306,7 @@ def main_function(experiment_directory, continue_from, batch_split):
             param_group["lr"] = lr_schedules[i].get_learning_rate(epoch)
 
     def empirical_stat(latent_vecs, indices):
+
         lat_mat = torch.zeros(0).cuda()
         for ind in indices:
             lat_mat = torch.cat([lat_mat, latent_vecs[ind]], 0)
